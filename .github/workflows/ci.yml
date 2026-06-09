@@ -6,31 +6,32 @@ on:
   workflow_dispatch:
 
 jobs:
-  retrain:
+  train-model:
     runs-on: ubuntu-latest
-    env:                         
-      MLFLOW_ALLOW_FILE_STORE: "true"  
-
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.12.7'
+      - name: Setup Miniconda
+        uses: conda-incubator/setup-miniconda@v3
+        with:
+          auto-update-conda: true
+          python-version: "3.12"
 
-    - name: Install dependencies
-      run: |
-        pip install pandas numpy scikit-learn mlflow joblib
+      - name: Install Dependencies
+        shell: bash -l {0}
+        run: |
+          pip install mlflow
+          pip install -r MLProject/requirements.txt
 
-    - name: Run training script
-      run: |
-        cd MLProject
-        python modelling.py
+      - name: Run MLflow Project
+        shell: bash -l {0}
+        run: |
+          cd MLProject
+          mlflow run .
 
-    - name: Upload model artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: trained-model
-        path: MLProject/model.pkl
+      - name: Upload MLflow Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: mlflow-model-artifacts
+          path: MLProject/mlruns/
