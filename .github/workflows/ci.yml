@@ -3,9 +3,7 @@ name: Retrain Model CI
 on:
   push:
     branches: [ main ]
-    paths:
-      - 'MLProject/adult_preprocessing.csv'
-      - 'MLProject/modelling.py'
+    
   workflow_dispatch:
 
 jobs:
