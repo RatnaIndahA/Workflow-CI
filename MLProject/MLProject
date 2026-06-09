@@ -1,0 +1,10 @@
+# MLProject/MLProject
+name: adult-income-retraining
+
+conda_env: conda.yaml
+
+entry_points:
+  main:
+    parameters:
+      data_file: {type: string, default: "adult_preprocessing/adult_clean.csv"}
+    command: "python modelling.py"
