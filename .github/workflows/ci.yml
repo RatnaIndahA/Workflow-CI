@@ -1,4 +1,4 @@
-name: Retrain Model CI
+name: MLflow CI
 
 on:
   push:
@@ -21,19 +21,18 @@ jobs:
       - name: Install Dependencies
         shell: bash -l {0}
         run: |
-          pip install mlflow
-          pip install -r MLProject/requirements.txt
+          pip install pandas numpy scikit-learn mlflow joblib matplotlib seaborn
 
-      - name: Run MLflow Project
+      - name: Run Training Script
         shell: bash -l {0}
         env:
           MLFLOW_ALLOW_FILE_STORE: "true"
         run: |
           cd MLProject
-          mlflow run .
+          python modelling.py
 
       - name: Upload MLflow Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: mlflow-model-artifacts
+          name: mlflow-artifacts
           path: MLProject/mlruns/
