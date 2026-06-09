@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/ACER/OneDrive/Documents/STUPEN/SMSML_Ratna Indah Anggraini/Workflow-CI/MLProject/mlruns/0/7f23ee478a03420d95b06b9a6daff46b/artifacts
+end_time: 1780970109860
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 7f23ee478a03420d95b06b9a6daff46b
+run_name: Retrain_CI
+run_uuid: 7f23ee478a03420d95b06b9a6daff46b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1780970106640
+status: 3
+tags: []
+user_id: RatnaIndahA
