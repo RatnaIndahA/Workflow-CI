@@ -1,4 +1,3 @@
-# .github/workflows/ci.yml
 name: Retrain Model CI
 
 on:
@@ -22,17 +21,18 @@ jobs:
       with:
         python-version: '3.12.7'
 
-    - name: Install MLflow
-      run: pip install mlflow
+    - name: Install dependencies
+      run: |
+        pip install pandas numpy scikit-learn mlflow joblib
 
-    - name: Run MLflow Project
+    - name: Run training script
       run: |
         cd MLProject
-        mlflow run . --no-conda
+        python modelling.py
 
     - name: Upload model artifact
       uses: actions/upload-artifact@v4
       with:
         name: trained-model
-        path: MLProject/models/model.pkl
+        path: MLProject/model.pkl
 
