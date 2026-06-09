@@ -3,12 +3,13 @@ name: Retrain Model CI
 on:
   push:
     branches: [ main ]
-    
   workflow_dispatch:
 
 jobs:
   retrain:
     runs-on: ubuntu-latest
+    env:                         
+      MLFLOW_ALLOW_FILE_STORE: "true"  
 
     steps:
     - name: Checkout code
@@ -33,4 +34,3 @@ jobs:
       with:
         name: trained-model
         path: MLProject/model.pkl
-
